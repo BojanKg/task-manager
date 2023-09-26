@@ -1,0 +1,64 @@
+.lib {
+    background-image: url('../../assets/Library-Wallpaper-42-3840x2560-1-2048x1365.jpg');
+}
+
+.lib-card {
+    background-color: aliceblue;
+}
+
+.add {
+    position: relative;
+    z-index: 1;
+}
+
+.add-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.account {
+    background-size: contain;
+    padding-top: 20px;
+}
+
+.account-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+.account-card > p-card {
+    margin: 20px;
+}
+
+.account-name {
+    background-color: #ced4da80;
+    color: #dc3545;
+    padding: 10px;
+    margin: 0 70px 0 70px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.account-name h1 {
+    margin-left: 10px;
+}
+
+.search {
+    padding: 20px;
+    width: 300px;
+    padding-bottom: 0;
+}
+
+@media screen and (max-width: 766px) {
+    .account-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1000px) {
+    .account-card {
+        grid-template-columns: 1fr 1fr;
+    }
+}

@@ -1,0 +1,112 @@
+<div class="toDoes">
+    <div class="add">
+        <button (click)="addOpen()" class="btn btn-secondary add-button">
+            {{ add ? 'Add' : 'Close' }}
+        </button>
+        <app-add *ngIf="!add"></app-add>
+    </div>
+    <div class="card">
+        <p-table [value]="toDoes" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:20%">Task Name</th>
+                    <th style="width:20%">Status</th>
+                    <th style="width:20%">Priority</th>
+                    <th style="width:20%">Add Date</th>
+                    <th style="width:20%">To Do Date</th>
+                    <th style="width:20%">User</th>
+                    <th style="width:20%">User</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-toDo let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="toDo">
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="toDo.taskName">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{toDo.taskName}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-checkbox [(ngModel)]="toDo.status" [binary]="true" inputId="binary"></p-checkbox>
+                                <label for="status">Done</label>
+                            </ng-template>
+                            <ng-template pTemplate="output" *ngIf="!toDo.status">
+                                Open
+                            </ng-template>
+                            <ng-template pTemplate="output" *ngIf="toDo.status">
+                                Close
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown [options]="publisher" appendTo="body" [(ngModel)]="toDo.priority" [style]="{'width':'100%'}"></p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{toDo.priority}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="toDo.addDate">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{toDo.addDate}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-calendar [(ngModel)]="toDo.toDoDate" [showIcon]="true"></p-calendar>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{toDo.toDoDate | date:'dd.MM.yyyy'}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                {{toDo.user | firstLetterUppercase}}
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{toDo.user}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                {{toDo.id}}
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{toDo.id}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <div class="flex align-items-center justify-content-center gap-2">
+                            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(toDo)" class="p-button-rounded p-button-text"></button>
+                            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(toDo, ri)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(toDo, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                            <button appProduct myPointer="pointer" defaultColor="#fff" type="button" class="btn-close" aria-label="Close"
+                                (click)="deleteToDo(ri)"
+                                [ngStyle]="{'color': 'red'}">
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

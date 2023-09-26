@@ -1,0 +1,24 @@
+app-add-button {
+    margin-right: 20px;
+}
+
+.name-product {
+    position: absolute;
+    z-index: 1;
+    background-color: aliceblue;
+    right: 90px;
+    padding: 20px;
+    width: 210px;
+}
+
+.name-product a {
+    text-decoration: none;
+    color: #070707;
+}
+.nav-right {
+    display: flex;
+}
+
+.nav-right a {
+    margin-left: 20px;
+}

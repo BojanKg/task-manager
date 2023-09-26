@@ -1,0 +1,63 @@
+<div class="log">
+    <div *ngIf="!formLogin" class="successful">Successful login</div>
+    <div *ngIf="formLogin" class="successful">
+        {{ isLoginMode ? 'Sign Up' : 'Login' }}
+    </div>
+    <div class="alert alert-danger" *ngIf="error">
+        <p>{{ error }}</p>
+    </div>
+    <div *ngIf="isLoading" style="text-align: center;">
+        <app-log-spin></app-log-spin>
+      </div>
+    <form *ngIf="formLogin" [formGroup]="logForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="formLogin"  id="user-data" formGroupName="logData">
+            <div class="mb-3">
+                <label for="mail" class="form-label">Mail</label><br>
+                <p-dropdown 
+                    [options]="mail" 
+                    id="mail"
+                    name="mail"
+                    type="email"
+                    formControlName="mail" 
+                    placeholder="Select a Email" 
+                    [editable]="true" 
+                    optionLabel="mail"></p-dropdown>
+                <!-- <input 
+                  type="email" 
+                  class="form-control"
+                  id="mail"
+                  name="mail"
+                  required
+                  formControlName="mail"> -->
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label><br>
+                <input type="password" 
+                    pInputText 
+                    id="password"
+                    name="password"
+                    required
+                    formControlName="password"
+                    value="210419"
+                    minlength="6"/>
+                <!-- <input 
+                  type="password" 
+                  class="form-control" 
+                  id="password"
+                  name="password"
+                  required
+                  formControlName="password"
+                  minlength="6"> -->
+              </div>
+        </div>
+        <div class="log-button">
+            <button type="submit" class="btn btn-primary" [disabled]="!logForm.valid">
+                {{ isLoginMode ? 'Sign Up' : 'Login' }}
+            </button>
+            <button *ngIf="!isLoginMode" type="button" class="btn btn-primary"  (click)="logOut()">Log out</button>
+            <button type="button" class="btn btn-primary"  (click)="log()">
+                {{ isLoginMode ? 'Login' : 'Sign Up' }}
+            </button> 
+        </div>
+    </form>
+</div>

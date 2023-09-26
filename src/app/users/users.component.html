@@ -1,0 +1,21 @@
+<div class="lib" *ngIf="toDoes">
+    <div class="input-group flex-nowrap search">
+        <span class="input-group-text" id="addon-wrapping">Task Name</span>
+        <input [(ngModel)]="search" type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="addon-wrapping">
+    </div>
+    <div class="account">
+        <div class="account-card">
+            <p-card *ngFor="let toDo of toDoes | usersSearch:search; let i ='index'" header="{{toDo.taskName}}" subheader="{{toDo.id}}" [style]="{ width: '360px' }">
+                <ng-template *ngIf="toDo.taskName !== ''" pTemplate="header">
+                    <img (click)="sendPage(toDo)" [routerLink]="['/page', toDo.user, toDo.id, toDo.taskName]" alt="Card" src="https://picsum.photos/300/200?random={{toDo.id}}{{i}}"/>
+                </ng-template>
+                <p>Priority: <b>{{toDo.priority}}</b><p>
+                <ul  class="list-group list-group-flush">
+                    <li class="list-group-item">Status: <span *ngIf="!toDo.status">Open</span><span *ngIf="toDo.status">Close</span></li>
+                    <li class="list-group-item">Add Date: {{toDo.addDate}}</li>
+                    <li class="list-group-item">To Do Date: {{toDo.toDoDate | date:'dd.MM.yyyy'}}</li>
+                </ul>   
+            </p-card>
+        </div>
+    </div>
+</div>

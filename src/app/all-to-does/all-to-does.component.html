@@ -1,0 +1,80 @@
+<div class="toDoes">
+    <div class="card">
+      <p-table #dt [value]="allToDoes" selectionMode="single" [(selection)]="selectedAllToDoes" dataKey="id" [globalFilterFields]="['taskName','priority','status','addDate', 'toDoDate', 'user', 'id']" [tableStyle]="{'min-width': '50rem'}"
+          [rows]="10" [paginator]="true">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th pSortableColumn="taskName" style="width:14%">Task Name <p-sortIcon field="taskName"></p-sortIcon></th>
+                  <th pSortableColumn="priority" style="width:14%">Priority <p-sortIcon field="priority"></p-sortIcon></th>
+                  <th pSortableColumn="status" style="width:14%">Status <p-sortIcon field="status"></p-sortIcon></th>
+                  <th pSortableColumn="addDate" style="width:14%">Add Date <p-sortIcon field="addDate"></p-sortIcon></th>
+                  <th pSortableColumn="toDoDate" style="width:14%">To Do Date <p-sortIcon field="toDoDate"></p-sortIcon></th>
+                  <th pSortableColumn="user" style="width:14%">User <p-sortIcon field="user"></p-sortIcon></th>
+                  <th pSortableColumn="id" style="width:6%">ID <p-sortIcon field="id"></p-sortIcon></th>
+              </tr>
+              <tr>
+                  <th>
+                      <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filter" placeholder="Search by Task Name" class="w-full"/>
+                  </th>
+                  <th>
+                      <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filter" placeholder="Search by Priority" class="w-full"/>
+                  </th>
+                  <th>
+                      <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filter" placeholder="Search by Status" class="w-full"/>
+                  </th>
+                  <th>
+                      <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filter" placeholder="Search by Add Date" class="w-full"/>
+                  </th>
+                  <th>
+                      <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filter" placeholder="Search by To Do Date" class="w-full"/>
+                  </th>
+                  <th>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filter" placeholder="Search by User" class="w-full"/>
+                  </th>
+                  <th>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filter" placeholder="Search by Task ID" class="w-full"/>
+                </th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-toDo>
+              <tr [pSelectableRow]="toDo"
+              (click)="sendPage(toDo)" [routerLink]="['/page', toDo.user, toDo.id, toDo.taskName]">
+                  <td>
+                      <span class="p-column-title">Task Name</span>
+                      {{toDo.taskName}}
+                  </td>
+                  <td>
+                      <span class="p-column-title">Priority</span>
+                      {{toDo.priority}}
+                  </td>
+                  <td>
+                      <span class="p-column-title">Status</span>
+                      <span *ngIf="!toDo.status">Open </span>
+                      <span *ngIf="toDo.status">Close </span>
+                  </td>
+                  <td>
+                      <span class="p-column-title">Add Date</span>
+                      {{toDo.addDate}}
+                  </td>
+                  <td>
+                      <span class="p-column-title">To Do Date</span>
+                      {{toDo.toDoDate  | date:'dd.MM.yyyy'}}
+                  </td>
+                  <td>
+                    <span class="p-column-title">User</span>
+                    {{toDo.user | firstLetterUppercase}}
+                  </td>
+                  <td>
+                    <span class="p-column-title">ID</span>
+                    {{toDo.id}}
+                  </td>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+              <tr>
+                  <td colspan="4">No customers found.</td>
+              </tr>
+          </ng-template>
+      </p-table>
+    </div>
+  </div>

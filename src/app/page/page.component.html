@@ -1,0 +1,34 @@
+<div class="page">
+    <button *ngIf="buttonBack" [routerLink]="['']" pButton pRipple type="button" label="Back" class="p-button-outlined p-button-secondary back"></button>
+    <button *ngIf="!buttonBack" [routerLink]="['/user', toDoes.user]" pButton pRipple type="button" label="Back" class="p-button-outlined p-button-secondary back"></button>
+    <div class="container text-right">
+        <div class="row">
+          <div class="col page-toDo">
+            <div class="page-name">
+                <h1>{{toDoes.taskName}}</h1>
+                <h6>ID: {{toDoes.id}}</h6>
+            </div>
+            <div class="">
+                <h3 *ngIf="!toDoes.status">Open</h3><h3 *ngIf="toDoes.status">Close</h3>
+                <p>Status</p>
+            </div>
+            <div class="">
+                <h3>{{toDoes.addDate}}</h3>
+                <p>Add Date</p>
+            </div>
+            <div class="">
+                <h3>{{toDoes.toDoDate  | date:'dd.MM.yyyy'}}</h3>
+                <p>To Do Date</p>
+            </div>
+            <div class="">
+                <h2>{{toDoes.priority}}</h2>
+                <p>Priority</p>
+            </div>
+            <div class="">
+                <h4>{{toDoes.user! | firstLetterUppercase}}</h4>
+                <p>User</p> 
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

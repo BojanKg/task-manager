@@ -1,0 +1,17 @@
+.log-button {
+    display: flex;
+    justify-content: space-around;
+}
+
+.log {
+    width: 500px;
+    margin: 100px auto;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    border-radius: 3%;
+}
+
+.successful {
+    margin-bottom: 20px;
+    text-align: center;
+}

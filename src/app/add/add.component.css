@@ -1,0 +1,22 @@
+.button {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-grid > div {
+    margin: 10px;
+}
+
+.gp {
+    padding-top: 22px;
+}
+
+.gp button {
+    margin-right: 10px;
+}

@@ -1,0 +1,16 @@
+.add {
+    position: relative;
+    z-index: 1;
+}
+
+.add-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.toDoes {
+    margin: 30px 30px 30px 30px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}

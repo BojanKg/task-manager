@@ -1,0 +1,51 @@
+<div class="container px-4 add-book">
+    <div class="row">
+        <div class="col">
+            <div class="p-3 border bg-light">
+                <form [formGroup]="addToDoForm" (ngSubmit)="onSubmit()">
+                    <div formGroupName="toDoData" class="form-grid">
+                        <div class="form-group">
+                            <label for="taskName">Task Name</label>
+                            <input
+                                type="text"
+                                id="taskName"
+                                formControlName="taskName"
+                                class="form-control"
+                            />
+                            <span
+                                *ngIf="!addToDoForm.get('toDoData.taskName')?.valid && addToDoForm.get('toDoData.taskName')?.touched"
+                                class="help-block"
+                            >This field is required!
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority</label>
+                            <select class="form-select" aria-label="Default select example"
+                                    id="priority"
+                                    formControlName="priority">
+                                <option value="{{item}}" *ngFor="let item of priority">{{item}}</option>
+                            </select>
+                            <span
+                                *ngIf="!addToDoForm.get('toDoData.priority')?.valid && addToDoForm.get('toDoData.priority')?.touched"
+                                class="help-block"
+                            >This field is required!
+                            </span>
+                        </div>
+                        <div class="form-group">                         
+                            <label for="toDoDate">To Do Date</label><br>
+                            <p-calendar formControlName="toDoDate" [showIcon]="true"></p-calendar>
+                            <span
+                                *ngIf="!addToDoForm.get('toDoData.toDoDate')?.valid && addToDoForm.get('toDoData.toDoDate')?.touched"
+                                class="help-block"
+                            >This field is required!
+                            </span>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Save" class="btn btn-primary" [disabled]="!addToDoForm.valid"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
